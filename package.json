@@ -4,7 +4,7 @@
   "description": "webpack install",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack ./src/main.js --config ./bulid/webpack.config.js"
+    "serve": "webpack ./src/main.js --config ./build/webpack.config.js"
   },
   "author": "vj0510@163.com",
   "license": "ISC",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.6.0",
+    "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "babel-loader": "^8.0.6"
   }

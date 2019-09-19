@@ -3,8 +3,8 @@ module.exports = {
     //指定的打包形式
     mode: 'development',
     entry: {
-        //配置文件的入口
-        main: path.resolve(__dirname, '../src/main.js')
+        //配置文件的入口  babel-polyfill 对一些不支持新语法的客户端提供新语法的实现
+        main: ["@babel/polyfill", path.resolve(__dirname, '../src/main.js')]
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
