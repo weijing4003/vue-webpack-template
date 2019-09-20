@@ -1,4 +1,6 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
     //指定的打包形式
     mode: 'development',
@@ -23,7 +25,28 @@ module.exports = {
                         loader: 'babel-loader'
                     }
                 ]
+            },{
+                test: /\.(scss|sass)$/, // 添加sass 转换
+                use: [
+                    {
+                        loader:'style-loader'  // css 解析到 html页面 的 style 上
+                    },{
+                        loader: 'css-loader'  // 解析css文件
+                    },{
+                        loader: 'sass-loader',
+                        options: {
+                            implementation: require('dart-sass')
+                        }
+                    },{
+                        loader: 'postcss-loader'  //配置 postcss 实现自动添加css3前缀
+                    }
+                ]
             }
         ]
+    },
+    plugins: {
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, '../public/index.html')
+        })
     }
 }
