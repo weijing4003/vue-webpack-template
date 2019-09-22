@@ -1,15 +1,23 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-const VuePloaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
     //指定的打包形式
     mode: 'development',
     entry: {
-        //配置文件的入口  babel-polyfill 对一些不支持新语法的客户端提供新语法的实现
-        main: ["@babel/polyfill", path.resolve(__dirname, '../src/main.js')]
+        main:  path.resolve(__dirname, '../src/main.js')
     },
+   
+    output: {
+        path: path.resolve(__dirname, '../dist'),
+        filename: 'js/[name].[hash:8].js',
+        chunkFilename: 'js/[name].[hash:8].js',
+        publicPath: '/'
+
+    },
+    stats: { children: false },
     devServer: {
         hot: true,
         port: 3000,
@@ -19,13 +27,6 @@ module.exports = {
         alias: {
             vue$: 'vue/dist/vue.runtime.esm.js'
         }
-    },
-    output: {
-        path: path.resolve(__dirname, '../dist'),
-        filename: 'js/[name].[hash:8].js',
-        chunkFilename: 'js/[name].[hash:8].js',
-        publicPath: '/'
-
     },
     module: {
         rules: [
@@ -43,7 +44,10 @@ module.exports = {
                     {
                         loader:'style-loader'  // css 解析到 html页面 的 style 上
                     },{
-                        loader: 'css-loader'  // 解析css文件
+                        loader: 'css-loader',  // 解析css文件
+                        options: {
+                            importLoaders: 2
+                        }
                     },{
                         loader: 'sass-loader',
                         options: {
@@ -112,7 +116,7 @@ module.exports = {
                     {
                         loader: 'cache-loader'
                     },{
-                        loader: 'thead-loader'
+                        loader: 'thread-loader'
                     },{
                         loader: 'vue-loader',
                         options: {
@@ -143,6 +147,6 @@ module.exports = {
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new VuePloaderPlugin()
+        new VueLoaderPlugin()
     ]
 }
