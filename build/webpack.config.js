@@ -28,7 +28,11 @@ module.exports = {
     resolve: {
         alias: {
             vue$: 'vue/dist/vue.runtime.esm.js'
-        }
+        },
+        extensions: [
+            '.js',
+            '.vue'
+          ]
     },
     module: {
         rules: [
@@ -149,11 +153,11 @@ module.exports = {
         }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new VueLoaderPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': {
-              VUE_APP_BASE_URL: JSON.stringify('http://localhost:3000')
-            }
-          }),
+        // new VueLoaderPlugin(),
+        // new webpack.DefinePlugin({
+        //     'process.env': {
+        //       VUE_APP_BASE_URL: JSON.stringify('http://localhost:3000')
+        //     }
+        //   }),
     ]
 }

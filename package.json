@@ -4,17 +4,22 @@
   "description": "webpack install",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack ./src/main.js --config ./build/webpack.config.js"
+    "serve": "webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "webpack --config ./build/webpack.prod.js"
   },
   "author": "vj0510@163.com",
   "license": "ISC",
   "devDependencies": {
+    "@intervolga/optimize-cssnano-plugin": "^1.0.6",
     "autoprefixer": "^9.6.1",
     "cache-loader": "^4.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
     "dart-sass": "^1.22.12",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
@@ -24,7 +29,8 @@
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1"
+    "webpack-dev-server": "^3.8.1",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "@babel/core": "^7.6.0",
